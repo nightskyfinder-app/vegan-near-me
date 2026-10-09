@@ -622,6 +622,7 @@ function locate() {
   { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
 }
 function noLocation(why) {
+  if (state.loadedBounds || state.loading) return; // a search already took over; keep its results
   if (saved && map.getZoom() >= MIN_ZOOM) { load(); return; }
   setStatus('Search a city to start', why);
   $('#sheetBody').innerHTML = '';
